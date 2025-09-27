@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.checklist">
+
+    <!-- Note: targetSdk / compile / min SDK are configured in Gradle (build.gradle) -->
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Checklist">
+
+        <!-- Main launcher activity (your Compose activity) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Configure activity referenced in the AppWidgetProviderInfo -->
+        <activity
+            android:name=".DailyChecklistConfigureActivity"
+            android:exported="true" />
+
+        <!-- AppWidgetProvider (DailyChecklist) -->
+        <receiver
+            android:name=".DailyChecklist"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <!-- Link to the widget provider info xml (res/xml/daily_checklist_info.xml) -->
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/daily_checklist_info" />
+        </receiver>
+
+        <!-- RemoteViewsService used by the collection widget -->
+        <service
+            android:name=".ChecklistService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"
+            android:exported="true" />
+
+        <!-- BroadcastReceiver used by your alarm reset logic -->
+        <receiver
+            android:name=".ResetReceiver"
+            android:exported="true" />
+    </application>
+
+</manifest>
