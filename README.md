@@ -42,8 +42,7 @@ res/xml/
 
 1. Clone the repository
 
-   git clone [https://github.com/yourusername/DailyChecklist.git](https://github.com/yourusername/DailyChecklist.git)
-   cd DailyChecklist
+   git clone https://github.com/SahishnuG/daily-checklist-app.git
 
 2. Open in Android Studio
 
